@@ -29,5 +29,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-samples-echo</artifactId>
+    <packaging>pom</packaging>
 
+    <modules>
+        <module>dubbo-samples-echo-api</module>
+        <module>dubbo-samples-echo-server</module>
+        <module>dubbo-samples-echo-client</module>
+        <module>dubbo-samples-echo-annotation-server</module>
+        <module>dubbo-samples-echo-java-server</module>
+        <module>dubbo-samples-echo-annotation-client</module>
+        <module>dubbo-samples-echo-java-client</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.46</version>
+        </dependency>
+    </dependencies>
 </project>
