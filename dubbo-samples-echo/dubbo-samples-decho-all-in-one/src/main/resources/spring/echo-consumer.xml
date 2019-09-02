@@ -26,7 +26,6 @@
 
     <!-- 指定要消费的服务 -->
     <dubbo:reference id="echoRefer" check="false" interface="com.alibaba.dubbo.samples.echo.api.EchoService"
-                     url="dubbo://127.0.0.1:20880"
                      injvm="false"/>
 
     <bean class="com.alibaba.dubbo.samples.echo.ClientInvoke" init-method="init" />
