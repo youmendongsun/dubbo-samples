@@ -27,8 +27,8 @@
     <!-- 服务消费方应用名称, 方便用于依赖跟踪 -->
     <dubbo:application name="echo-consumer"/>
 
-    <!-- 使用本地zookeeper作为注册中心 -->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <!-- 使用本地dsr作为注册中心 -->
+    <dubbo:registry address="dsr://127.0.0.1:9603"/>
 
     <!-- 指定要消费的服务 -->
     <dubbo:reference id="echoService" check="false" interface="com.alibaba.dubbo.samples.echo.api.EchoService"/>

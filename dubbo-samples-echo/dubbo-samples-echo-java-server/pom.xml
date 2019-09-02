@@ -36,7 +36,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.alibaba.dubbo.samples.echo.EchoProvider</mainClass>
+                    <mainClass>com.alibaba.dubbo.samples.echo.EchoAllInOne</mainClass>
                 </configuration>
             </plugin>
         </plugins>

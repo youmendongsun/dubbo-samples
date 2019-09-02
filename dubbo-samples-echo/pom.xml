@@ -39,6 +39,7 @@
         <module>dubbo-samples-echo-java-server</module>
         <module>dubbo-samples-echo-annotation-client</module>
         <module>dubbo-samples-echo-java-client</module>
+        <module>dubbo-samples-decho-all-in-one</module>
     </modules>
 
     <dependencies>
