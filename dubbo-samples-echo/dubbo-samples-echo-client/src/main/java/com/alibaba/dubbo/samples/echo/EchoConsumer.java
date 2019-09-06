@@ -20,17 +20,30 @@
 package com.alibaba.dubbo.samples.echo;
 
 import com.alibaba.dubbo.samples.echo.api.EchoService;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.concurrent.TimeUnit;
+
 public class EchoConsumer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EchoConsumer.class);
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"spring/echo-consumer.xml"});
         context.start();
         EchoService echoService = (EchoService) context.getBean("echoService"); // get remote service proxy
 
-        String status = echoService.echo("Hello world!");
-        System.out.println("echo result: " + status);
+        new Thread(() -> {
+            for (; ; ) {
+                try {
+                    TimeUnit.SECONDS.sleep(10L);
+                    String status1 = echoService.echo("Hello world!");
+                    LOGGER.info(">>>>>>>> echo result: " + status1);
+                } catch (Exception e) {
+                    LOGGER.error(">>>>>>>> echo result: " + e.getMessage());
+                }
+            }
+        }).start();
     }
 }
