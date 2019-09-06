@@ -20,20 +20,32 @@
 package com.alibaba.dubbo.samples.echo;
 
 import com.alibaba.dubbo.samples.echo.api.EchoService;
+import com.alipay.sofa.spring.cloud.registry.mesh.SofaMeshDiscoveryAutoConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.concurrent.TimeUnit;
 
-public class EchoConsumer {
+@SpringBootApplication(exclude = SofaMeshDiscoveryAutoConfiguration.class)
+@ImportResource("spring/echo-consumer.xml")
+public class EchoConsumer implements ApplicationContextAware {
     private static final Logger LOGGER = LoggerFactory.getLogger(EchoConsumer.class);
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"spring/echo-consumer.xml"});
-        context.start();
-        EchoService echoService = (EchoService) context.getBean("echoService"); // get remote service proxy
+        new SpringApplicationBuilder(EchoConsumer.class).run(args);
+    }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        EchoService echoService = (EchoService) applicationContext.getBean("echoService"); // get remote service proxy
         new Thread(() -> {
             for (; ; ) {
                 try {

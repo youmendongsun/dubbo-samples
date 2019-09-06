@@ -19,16 +19,16 @@
 
 package com.alibaba.dubbo.samples.echo;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.alipay.sofa.spring.cloud.registry.mesh.SofaMeshDiscoveryAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.ImportResource;
 
+@SpringBootApplication(exclude = SofaMeshDiscoveryAutoConfiguration.class)
+@ImportResource("spring/echo-provider.xml")
 public class EchoProvider {
 
     public static void main(String[] args) throws Exception {
-        // #1 指定服务暴露配置文件
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"spring/echo-provider.xml"});
-        // #2 启动spring容器并暴露服务
-        context.start();
-
-        System.in.read();
+        new SpringApplicationBuilder(EchoProvider.class).run(args);
     }
 }

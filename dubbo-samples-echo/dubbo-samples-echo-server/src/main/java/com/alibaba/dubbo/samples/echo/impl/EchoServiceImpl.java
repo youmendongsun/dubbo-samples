@@ -21,15 +21,18 @@ package com.alibaba.dubbo.samples.echo.impl;
 
 import com.alibaba.dubbo.rpc.RpcContext;
 import com.alibaba.dubbo.samples.echo.api.EchoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EchoServiceImpl implements EchoService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EchoServiceImpl.class);
 
     public String echo(String message) {
         String now = new SimpleDateFormat("HH:mm:ss").format(new Date());
-        System.out.println("[" + now + "] Hello " + message
+        LOGGER.info("[" + now + "] Hello " + message
                 + ", request from consumer: " + RpcContext.getContext().getRemoteAddress());
         return message;
     }
