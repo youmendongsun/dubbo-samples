@@ -21,6 +21,7 @@ package com.alibaba.dubbo.samples.echo;
 
 import com.alibaba.dubbo.samples.echo.api.EchoService;
 import com.alipay.sofa.spring.cloud.registry.mesh.SofaMeshDiscoveryAutoConfiguration;
+import com.alipay.sofa.spring.cloud.registry.mesh.SofaMeshRestTemplateAutoConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -34,7 +35,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.concurrent.TimeUnit;
 
-@SpringBootApplication(exclude = SofaMeshDiscoveryAutoConfiguration.class)
+@SpringBootApplication(exclude = {SofaMeshDiscoveryAutoConfiguration.class, SofaMeshRestTemplateAutoConfiguration.class})
 @ImportResource("spring/echo-consumer.xml")
 public class EchoConsumer implements ApplicationContextAware {
     private static final Logger LOGGER = LoggerFactory.getLogger(EchoConsumer.class);
