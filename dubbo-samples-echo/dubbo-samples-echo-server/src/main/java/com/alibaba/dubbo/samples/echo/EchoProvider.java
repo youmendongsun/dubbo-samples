@@ -19,13 +19,13 @@
 
 package com.alibaba.dubbo.samples.echo;
 
-import com.alipay.sofa.spring.cloud.registry.mesh.SofaMeshDiscoveryAutoConfiguration;
-import com.alipay.sofa.spring.cloud.registry.mesh.SofaMeshRestTemplateAutoConfiguration;
+//import com.alipay.sofa.spring.cloud.registry.mesh.SofaMeshDiscoveryAutoConfiguration;
+//import com.alipay.sofa.spring.cloud.registry.mesh.SofaMeshRestTemplateAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication(exclude = {SofaMeshDiscoveryAutoConfiguration.class, SofaMeshRestTemplateAutoConfiguration.class})
+@SpringBootApplication(/*exclude = {SofaMeshDiscoveryAutoConfiguration.class, SofaMeshRestTemplateAutoConfiguration.class}*/)
 @ImportResource("spring/echo-provider.xml")
 public class EchoProvider {
 
